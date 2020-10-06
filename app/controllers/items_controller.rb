@@ -2,7 +2,9 @@ class ItemsController < ApplicationController
 	before_action :find_item, only:[:show, :edit, :update, :destroy]
 
 	def index
-		@items = Item.all.order("created_at DESC")
+		if user_signed_in?
+		@items = Item.where(:user_id => :current_user_id).order("created_at DESC")
+		end
 	end
 
 
@@ -41,6 +43,11 @@ class ItemsController < ApplicationController
 	end
 
 
+	def complete
+		@item =Item.find(params[:id])
+		@item.update_attribute(:completed_at, Time.now)
+		redirect_to root_path
+	end
 
 	private
 
