@@ -1,19 +1,46 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <title>ItsOnmylist</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+</head>
 
-  <body>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <% link_to "ItsOnmylist", root_path, class:"navbar-brand" %>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <% if current_user.present? %>
+                <li><% link_to "Sign out", destroy_user_session_path, method: :delete%>
+                </li>
 
+                <% else %>
 
-  <%= yield %>
+                <li><% link_to "Log in", new_user_session_path %></li>
+                <li><% link_to "Register", new_user_registration_path %></li>
+                <% end  %>
+            </ul>
+            <% if user_signed_in? %>
+            <li><% link_to "Create Item", new_item_path, class: "navbar-text navbar-link" %></li>
+            <% end  %>
+
+        </div>
+
+    </nav>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
+    <div class="container">
+        <%= yield %>
+    </div>
+
 </body>
+
 </html>
