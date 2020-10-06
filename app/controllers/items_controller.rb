@@ -21,7 +21,7 @@ class ItemsController < ApplicationController
 		else
 		  render 'new'
 		end
-	
+	end
 
 
 	def edit
@@ -48,7 +48,6 @@ class ItemsController < ApplicationController
 	def item_params
 	 	params.require(:item).permit(:title, :description)
 	end
-
 
 	def find_item
 		@item= Item.find(params[:id])
