@@ -46,9 +46,11 @@ class ItemsController < ApplicationController
 	end
 
 	def undo
-		@item = Item.find(params[:id])
-  		item.update_attribute(:undo_at)
-		redirect_to root_path
+	if @item.update(item_params)
+			redirect_to item_path(@item)
+		else
+			render 'edit'
+		end
 	end
 
 	private

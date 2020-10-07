@@ -20,7 +20,7 @@
 								<i class="fa fa-undo fa-lg"></i>
 							<% end %>
 						</div>
-			
+	
 						<div class="col-md-2">
 							<p><%= link_to item, method: :delete, data: { confirm: "Are you sure?" } do %></p>
 								<i class="fa fa-trash fa-lg"></i>
@@ -66,4 +66,7 @@
 
 <% else %>
 	<%= render 'welcome_page' %>
+	<div class="col-md-10 col-md-offset-1 center">
+	<%= image_tag("task.jpg", :alt => "rss feed") %>
+	</div>
 <% end %>	
