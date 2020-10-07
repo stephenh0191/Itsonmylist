@@ -51,14 +51,28 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+   adapter: postgresql
+  database: my_database_test
+  pool: 5
+  timeout: 5000
 end
 
 group :development do
   gem 'sqlite3'
+  adapter: postgresql
+  database: my_database_development
+  pool: 5
+  timeout: 5000
+
 end
 group :production do
   gem 'pg' 
   gem 'rails_12factor'
+   adapter: postgresql
+  database: my_database_production
+  pool: 5
+  timeout: 5000
+
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
