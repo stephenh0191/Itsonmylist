@@ -46,7 +46,6 @@ a {
 
 .navbar {
 	font-family: 'Lato', sans-serif;
-	text-transform: uppercase;
 }
 
 .navbar-default {
@@ -127,19 +126,45 @@ a {
 	}
 }
 
+    
+ 
 
 
+/* footer */
 .footer {
-	background: #2B2E2E;
-	width: 100%;
-	padding: 2rem 0;
-	color: #FFF;
-	text-align: center;
-	p {
-		margin: 0;
-		font-size: .85rem;
-	}
+  background-image: url("images/tak.jpeg");
+  background-size: cover;
+  margin-top: 350px;
+  padding-top: 5px;
+  border-top: 15px solid #329da8;
+  color: #999;
+  text-align: center;
+
 }
+.footer a {
+  color: #555;
+}
+
+.footer a:hover {
+  color: #222;
+}
+
+.footer small {
+  float: center;
+}
+
+.footer ul {
+  float: center;
+  list-style: none;
+}
+
+.footer ul li {
+  float: center;
+  margin-left: 10px;
+}
+
+
+
 
 button, .button {
 	border: none;

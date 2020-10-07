@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
 
 	def index
 		if user_signed_in?
-			@items = Item.where(:user_id => current_user.id).order("created_at DESC")
+			@items = Item.where(:user_id => current_user_id).order("created_at DESC")
 		end
 	end
 
@@ -42,6 +42,12 @@ class ItemsController < ApplicationController
 	def complete
 		@item = Item.find(params[:id])
 		@item.update_attribute(:completed_at, Time.now)
+		redirect_to root_path
+	end
+
+	def undo
+		@item = Item.find(params[:id])
+  		item.update_attribute(:undo_at)
 		redirect_to root_path
 	end
 

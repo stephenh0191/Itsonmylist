@@ -1,3 +1,4 @@
+
 <!-- Checks to see if a user is signed in, if one is, it will list its checklist. -->
 <!-- If not, it will render the landing page that asks the user to sign up or login. -->
 <% if user_signed_in? %>
@@ -12,6 +13,11 @@
 						<div class="col-md-2">
 							<p><%= link_to complete_item_path(item), method: :patch do %></p>
 								<i class="fa fa-check fa-lg"></i>
+							<% end %>
+						</div>
+						<div class="col-md-2">
+							<p><%= link_to undo_item_path(item), method: :patch do %></p>
+								<i class="fa fa-undo fa-lg"></i>
 							<% end %>
 						</div>
 			
