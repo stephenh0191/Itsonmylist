@@ -8,7 +8,6 @@ class ItemsController < ApplicationController
 		end
 	end
 
-
 	def show
 	end
 
@@ -30,7 +29,7 @@ class ItemsController < ApplicationController
 
 	def update
 		if @item.update(item_params)
-			redirect_to item_path(@item)
+			redirect_to item_path(@item), :notice =>  "Congrats! Task was updated!"
 		else
 			render 'edit'
 		end
@@ -38,25 +37,18 @@ class ItemsController < ApplicationController
 
 	def destroy
 		@item.destroy
-		redirect_to root_path
+		redirect_to root_path , :notice => "Congrats! Task was Deleted!. #{undo_link}"
 	end
 
 	def complete
 		@item = Item.find(params[:id])
 		@item.update_attribute(:completed_at, Time.now)
-		redirect_to root_path
+		redirect_to item_path(@item), :notice => "Conrats! Task was updated!. #{undo_link}"
 	end
-
-	def undo
-	if @item.update(item_params)
-			redirect_to item_path(@item)
-		else
-			render 'edit'
-		end
-	end
+	
 
 	private
-
+	
 	def item_params
 		params.require(:item).permit(:title, :description)
 	end
@@ -64,4 +56,8 @@ class ItemsController < ApplicationController
 	def find_item
 		@item = Item.find(params[:id])
 	end
+	def undo_link
+		 view_context.link_to("fa fa-undo fa-lg",revert_version_path(@item.versions.scope.last), :method => :post)
+	end
+	
 end

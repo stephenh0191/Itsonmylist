@@ -3,6 +3,7 @@
 
 <head>
     <title>ItsOnmylist</title>
+    
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_pack_tag  'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -10,23 +11,42 @@
 </head>
 <body>
     <nav class="navbar navbar-default">
-        <div class="container">
-            <div class="navbar-header">
+         <div class="navbar-header">
                 <%= link_to "It's on my List", root_path, class:"navbar-brand  navbar-center"  %>
             </div>
+        <div class="container">
             <ul class="nav navbar-nav navbar-right">
                 <% if current_user.present? %>
-                    <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+
+                  <% flash.each do |name,msg| %> 
+                    <%= content_tag :div, raw(msg), :id => "flash_#{name}" %>
+                    <%end%>
+                    <%= content_tag :h2, yield(:title) if new_item_path %>
+
+                    <div class="dropdown">
+                        <li class=current_user> <a href='#'>Welcome</a> 
+                     <div class="dropdown-content">
+                        <ul>
+                            <li class='login'><a href='#'>My Account</a></la>
+                            <li class='login'><a href='#'>My Tasks</a></la>
+                            <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+                    </div>
+            </li>
+          </div>
                 <% else %>
                     <li><%= link_to "Log In", new_user_session_path %></li>
                     <li><%= link_to "Sign Up", new_user_registration_path %></li>
                 <% end %>
-            </ul>
-            <% if user_signed_in? %>
-                <%= link_to "Create To do", new_item_path, class: "navbar-text navbar-link navbar-right" %>
-            <% end %>
-        </div>
+            </ul>  
     </nav>
+        <div class="col-md-10 col-md-offset-3">
+            <div class="col-md-2">
+            <% if user_signed_in? %>
+            <%= link_to "Create To do", new_item_path, class: "btn btn-info" %>
+            <% end %>
+            </div>
+        </div>
+
 
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>

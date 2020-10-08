@@ -24,7 +24,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'simple_form', '~> 5.0', '>= 5.0.3'
 gem 'bootstrap-sass', '~> 3.4', '>= 3.4.1'
 gem 'devise', '~> 4.7', '>= 4.7.3'
-
+gem 'paper_trail', '~> 11.0'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
