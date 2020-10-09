@@ -25,6 +25,7 @@
 	transition: 0.4s;
 	color: lighten(#222, 50%);
 	text-decoration: none;
+	
 }
 
 /* Universal styles */
@@ -60,12 +61,14 @@ a {
 
 	.navbar-link {
 		color: #FFF;
+		
 	}
 
 	.navbar-brand {
 		color: #FFF;
 		letter-spacing: 1.25px;
 		font-size: 2.1em;
+		
 	}
 
 }

@@ -1,9 +1,9 @@
+
 <!DOCTYPE html>
 <html>
 
 <head>
     <title>ItsOnmylist</title>
-    
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_pack_tag  'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -11,17 +11,12 @@
 </head>
 <body>
     <nav class="navbar navbar-default">
-         <div class="navbar-header">
+        <div class="container">
+            <div class="navbar-header">
                 <%= link_to "It's on my List", root_path, class:"navbar-brand  navbar-center"  %>
             </div>
-        <div class="container">
             <ul class="nav navbar-nav navbar-right">
                 <% if current_user.present? %>
-
-                  <% flash.each do |name,msg| %> 
-                    <%= content_tag :div, raw(msg), :id => "flash_#{name}" %>
-                    <%end%>
-                    <%= content_tag :h2, yield(:title) if new_item_path %>
 
                     <div class="dropdown">
                         <li class=current_user> <a href='#'>Welcome</a> 
@@ -47,8 +42,6 @@
             </div>
         </div>
 
-
-    <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 
     <div class="container">

@@ -15,13 +15,7 @@
 								<i class="fa fa-check fa-lg"></i>
 							<% end %>
 						</div>
-						<div class="col-md-2">
-							<p><%= link_to undo_item_path(item), method: :patch do %></p>
-								<i class="fa fa-undo fa-lg"></i>
-							<% end %>
-						</div>
-						
-
+	
 						<div class="col-md-2">
 							<p><%= link_to item, method: :delete, data: { confirm: "Are you sure?" } do %></p>
 								<i class="fa fa-trash fa-lg"></i>
@@ -33,8 +27,7 @@
 							<p style="opacity: 0.5;" class="item-sub-title item-desc"><%= item.description %></p>
 							<p style="opacity: 0.5;" class="time-created-at item-sub-title">Completed <%= time_ago_in_words(item.completed_at) %> ago</p>
 						</div>
-							
-					</div>
+					
 
 		<% else %>
 <!-- For Items NOT Completed -->
@@ -62,7 +55,15 @@
 
 				<% end %>
 			</div>
+			<div id= "container">	
+							<% flash.each do |name,msg| %> 
+							<%= content_tag :div, raw(msg), :id => "flash_#{name}" %>
+							<%end%>
+							<%= content_tag :h2, yield(:title) if new_item_path %>
+							</div>
+			</div>
 		<% end %>	
+
 	</div>
 
 <% else %>
