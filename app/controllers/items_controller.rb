@@ -28,7 +28,7 @@ class ItemsController < ApplicationController
 
 	def update
 		if @item.update(item_params)
-			redirect_to item_path(@item), :notice =>  "Congrats! Task was updated!"
+			redirect_to item_path(@item), :notice =>  "Congrats! Task
 		else
 			render 'edit'
 		end
