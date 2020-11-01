@@ -4,6 +4,9 @@ class ItemsController < ApplicationController
 	def index
 		if user_signed_in?
 			@items = Item.where(:user_id => current_user.id).order("created_at DESC")
+		else
+			@category_id = Category.find_by(name: params[:category]).id
+			@items = Item.where(:category_id => @category_id).order("Created_at DESC")
 		end
 	end
 
@@ -48,7 +51,7 @@ class ItemsController < ApplicationController
 	private
 	
 	def item_params
-		params.require(:item).permit(:title, :description)
+		params.require(:item).permit(:title, :description, :category_id)
 	end
 
 	def find_item
