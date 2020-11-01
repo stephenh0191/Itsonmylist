@@ -43,10 +43,8 @@ class ItemsController < ApplicationController
 		@item = Item.find(params[:id])
 		@item.update_attribute(:completed_at, Time.now)
 		redirect_to root_path , :notice => "To undo completed task please click. #{undo_link}"
-		
 	end
 	
-
 	private
 	
 	def item_params
