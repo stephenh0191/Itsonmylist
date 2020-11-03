@@ -1,6 +1,14 @@
 <!-- Checks to see if a user is signed in, if one is, it will list its checklist. -->
 <!-- If not, it will render the landing page that asks the user to sign up or login. -->
 <% if user_signed_in? %>
+<div class="col-md-10 col-md-offset-3">
+        <div class="col-md-2">
+            <% if user_signed_in? %>
+            <%= link_to "Create To do", new_item_path, class: "btn btn-info" %>
+            <% end %>
+        </div>
+    </div>
+    
 	<div class="col-md-10 col-md-offset-1">
 		<% @items.each do |item| %> 
 			<div class="index-wrapper">
