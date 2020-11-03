@@ -4,9 +4,9 @@ class ItemsController < ApplicationController
 	def index
 		if user_signed_in?
 			@items = Item.where(:user_id => current_user.id).order("created_at DESC")
-		else
-			@category_id = Category.find_by(name: params[:category]).id
-			@items = Item.where(:category_id => @category_id).order("Created_at DESC")
+	#	else
+		#	@category_id = Category.find_by(name: params[:category]).id
+		#	@items = Item.where(:category_id => @category_id).order("Created_at DESC")
 		end
 	end
 
@@ -15,6 +15,7 @@ class ItemsController < ApplicationController
 
 	def new
 		@item = current_user.items.build
+		@genres = Category.all.map{|c| [c.name, c.id]}
 	end
 
 	def create
@@ -46,12 +47,14 @@ class ItemsController < ApplicationController
 		@item = Item.find(params[:id])
 		@item.update_attribute(:completed_at, Time.now)
 		redirect_to root_path , :notice => "To undo completed task please click. #{undo_link}"
+		
 	end
 	
+
 	private
 	
 	def item_params
-		params.require(:item).permit(:title, :description, :category_id)
+		params.require(:item).permit(:title, :description)
 	end
 
 	def find_item
@@ -60,5 +63,4 @@ class ItemsController < ApplicationController
 	def undo_link
 		view_context.link_to("undo",revert_version_path(@item.versions.scope.last), :method => :post)
 	end
-	
 end

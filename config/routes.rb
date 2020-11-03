@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
 	end
 	root 'items#index'
-		get '/about' => 'page#about'
-		
+		get '/about' => 'pages#about'
+		get '/contact' => 'pages#contact'
+
 end
